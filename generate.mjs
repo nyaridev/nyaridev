@@ -174,13 +174,11 @@ for (const [mode, t] of Object.entries(THEMES)) {
 const picture = (base, alt, width) =>
   `<picture><source media="(prefers-color-scheme: dark)" srcset="${base}-dark.svg" /><img src="${base}-light.svg" width="${width}" alt="${alt}" /></picture>`;
 // The name panel is a little narrower than the page, so its edges line up with the two panels below it.
+// One paragraph for all of it, so the gap under the name panel is a line gap, not a paragraph margin.
 writeFileSync(
   join(out, "README.md"),
   `<p align="center">
-  ${picture("assets/hero", "nyaridev", "98.6%")}
-</p>
-
-<p align="center">
+  ${picture("assets/hero", "nyaridev", "98.6%")}<br />
 ${Object.entries(projects)
   .map(([id, p]) => `  <a href="https://github.com/nyaridev/${p.repo ?? id}">${picture(`assets/cards/${id}`, `${p.title}: ${p.tagline}`, "49%")}</a>`)
   .join("\n")}

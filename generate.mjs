@@ -150,10 +150,12 @@ const card = (p, t) => {
   const at = (x, y, s, cx, cy) => `translate(${n(x - cx * s)} ${n(y - cy * s)}) scale(${s})`;
   return frame(620, 200, p.title, p.tagline, t, [
     `<path d="${halftone(620, 0, 165, 13, 4.2, 620, 200)}" fill="${t.ink}"/>`,
-    `<g transform="${at(74, 76, p.size, ...p.centre)}">${p.mark(t)}</g>`,
-    `<g transform="${at(132, 76, 0.4, p.left, 142.8)}">${p.word(t)}</g>`,
-    `<text x="38" y="158" fill="${t.grey}" font-family="${SANS}" font-size="22">${p.tagline}</text>`,
-    `<path d="M550 150H578M568 140L578 150L568 160" fill="none" stroke="${t.ink}" stroke-width="4" stroke-linecap="square" stroke-linejoin="miter"/>`,
+    `<g filter="url(#ink)">`,
+    `  <g transform="${at(74, 76, p.size, ...p.centre)}">${p.mark(t)}</g>`,
+    `  <g transform="${at(132, 76, 0.4, p.left, 142.8)}">${p.word(t)}</g>`,
+    `  <text x="38" y="158" fill="${t.grey}" font-family="${SANS}" font-size="22">${p.tagline}</text>`,
+    `  <path d="M550 150H578M568 140L578 150L568 160" fill="none" stroke="${t.ink}" stroke-width="4" stroke-linecap="square" stroke-linejoin="miter"/>`,
+    `</g>`,
   ]);
 };
 
